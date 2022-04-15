@@ -1,0 +1,57 @@
+all:
+  hosts:
+    k3sn1:
+      ansible_host: k3sn1
+      ip: 192.168.14.11
+      access_ip: 192.168.14.11
+      ansible_user: pirate
+    k3sn2:
+      ansible_host: k3sn2
+      ip: 192.168.14.12
+      access_ip: 192.168.14.12
+      ansible_user: pirate
+    k3sn3:
+      ansible_host: k3sn3
+      ip: 192.168.14.13
+      access_ip: 192.168.14.13
+      ansible_user: pirate
+    k3sn4:
+      ansible_host: k3sn4
+      ip: 192.168.14.14
+      access_ip: 192.168.14.14
+      ansible_user: pirate
+    k3sn5:
+      ansible_host: k3sn5
+      ip: 192.168.14.15
+      access_ip: 192.168.14.15
+      ansible_user: pirate
+    k3snocto:
+      ansible_host: k3snocto
+      ip: 192.168.14.19
+      access_ip: 192.168.14.19
+      ansible_user: pirate
+    dev01:
+      ansible_host: dev01
+      ip: 192.168.14.10
+      access_ip: 192.168.14.10
+      ansible_user: pirate
+    app01:
+      ansible_host: app01
+      ip: 192.168.14.2
+      access_ip: 192.168.14.2
+      ansible_user: pirate
+  children:
+    k3s-nodes:
+      hosts:
+        k3sn1:
+        k3sn2:
+        k3sn3:
+        k3sn4:
+        k3sn5:
+        k3snocto:
+    dev-nodes:
+      hosts:
+        dev01:
+    app-nodes:
+      hosts:
+        app01:
