@@ -2,8 +2,6 @@
 
 ## Ansible Playbook
 
-Build a Kubernetes cluster using Ansible with k3s. The goal is easily install a Kubernetes cluster on machines running:
-
 - [X] Ubuntu
 
 on processor architecture:
