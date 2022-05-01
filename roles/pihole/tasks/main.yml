@@ -1,0 +1,9 @@
+---
+
+- import_tasks: pihole.yml
+  tags:
+    - pihole
+
+- import_tasks: update.yml
+  tags:
+    - network

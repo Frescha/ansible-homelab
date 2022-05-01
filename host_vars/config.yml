@@ -1,0 +1,24 @@
+
+
+timezone: "Europe/Berlin"
+static_dns: "1.1.1.1"
+pihole_image: "pihole/pihole:2022.04.2"
+pihole_ftl_max_db_days: "180"
+pihole_webpassword: Intranet # example value, change it and better use ansible-vault
+pihole_dns: "1.1.1.1;2606:4700:4700::1111"
+pihole_rev_server: "true"
+pihole_rev_server_domain: "local"
+pihole_rev_server_target: "192.168.14.1"
+pihole_rev_server_cidr: "192.168.178.0/24"
+pihole_ha_mode: yes
+pihole_vip_ipv4: "192.168.14.30/24"
+pihole_vip_ipv6: "fd00::10/64"
+sync_target: "{{ pihole_vip_ipv4.split('/')[0] }}"
+
+docker_apt_release_channel: stable
+docker_apt_arch: arm64
+docker_repo_url: https://download.docker.com/linux
+
+docker_apt_repository: "deb [arch={{ docker_apt_arch }}] {{ docker_repo_url }}/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} {{ docker_apt_release_channel }}"
+docker_apt_ignore_key_error: true
+docker_apt_gpg_key: "{{ docker_repo_url }}/{{ ansible_distribution | lower }}/gpg"

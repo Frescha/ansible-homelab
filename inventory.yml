@@ -35,23 +35,38 @@ all:
       ip: 192.168.14.10
       access_ip: 192.168.14.10
       ansible_user: pirate
+    poc:
+      ansible_host: poc.local
+      ip: 192.168.14.30
+      access_ip: 192.168.14.30
+      ansible_user: ubuntu
+      ansible_python_interpreter: /usr/bin/python3
     app01:
-      ansible_host: app01
+      ansible_host: app01.local
       ip: 192.168.14.2
       access_ip: 192.168.14.2
       ansible_user: pirate
+      ansible_python_interpreter: /usr/bin/python3
   children:
-    k3s-nodes:
+    k3s-master:
       hosts:
         k3sn1:
+    k3s-nodes:
+      hosts:
         k3sn2:
         k3sn3:
         k3sn4:
         k3sn5:
         k3snocto:
+    k3s-cluster:
+      k3s-master:
+      k3s-nodes:
     dev-nodes:
       hosts:
         dev01:
     app-nodes:
       hosts:
         app01:
+    pi-hole:
+      hosts:
+        poc:

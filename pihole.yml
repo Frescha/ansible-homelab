@@ -1,0 +1,8 @@
+---
+
+- name: Ansible Playbook for configuring Pi-Hole on Raspberry Pi
+  hosts: pi-hole
+  vars_files:
+    - host_vars/config.yml
+  roles:
+    - pihole
