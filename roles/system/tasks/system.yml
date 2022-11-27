@@ -1,20 +1,5 @@
 ---
 
-# User account configuration.
-# - name: Add a deployment user.
-#   user: frescha
-#   name: frescha
-#   state: present
-
-# Disable root login and use `sudo`.
-# - name: Add sudo rights for deployment user.
-#   lineinfile:
-#     dest: /etc/sudoers
-#     regexp: '^frescha'
-#     line: 'frescha ALL=(ALL) NOPASSWD: ALL'
-#     state: present
-#     validate: 'visudo -cf %s'
-
 # Remove unused software, open only required ports.
 - name: Remove unused packages.
   package:
@@ -23,14 +8,6 @@
     state: absent
   become: yes
 
-# File permissions.
-# - name: Configure the permissions for the messages log.
-#   file:
-#     path: /var/log/messages
-#     owner: root
-#     group: root
-#     mode: 0600
-#   become: yes
 
 # Automating updates for Debian systems.
 - name: Install unattended upgrades package.
