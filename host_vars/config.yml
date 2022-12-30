@@ -1,14 +1,21 @@
-
-
-fspath_web_interface: "/var/www/admin"
-fspath_web_directory: "/var/www/pihole"
-fspath_pihole: "/opt/pihole"
-fspath_pihole_src: "/etc/.pihole"
-fspath_pihole_config: "/etc/pihole"
-
 network_interface: eth0
 ipv4_static: True
 ipv4_address: "{{ hostvars[inventory_hostname]['ansible_' + network_interface]['ipv4']['address'] }}"
 dns_servers:
   - "8.8.8.8"
   - "8.8.4.4"
+
+my_domain: local
+my_timezone: "Europe/Berlin"
+ 
+
+
+# OctoPrint config
+octoprint_git_repo: "https://github.com/OctoPrint/OctoPrint.git"
+octoprint_url: "https://get.octoprint.org/latest"
+octoprint_install_path: "/opt/octoprint"
+octoprint_user: "pirate"
+octoprint_group: "pirate"
+octoprint_haproxy: True
+octoprint_port: 5000
+octoprint_webcam_port: 8080

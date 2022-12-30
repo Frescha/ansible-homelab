@@ -1,0 +1,17 @@
+---
+
+- hosts: dual
+  vars_files:
+    - host_vars/config.yml
+
+  pre_tasks:
+    - name: Make sure Git is installed
+      become: true
+      apt:
+        name: git
+        state: latest
+        update_cache: yes
+
+  roles:
+    - octoprint
+    
