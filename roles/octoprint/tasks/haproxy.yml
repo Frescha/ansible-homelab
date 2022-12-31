@@ -1,0 +1,24 @@
+---
+
+- name: Installing required packages for haproxy
+  apt: name={{item}}
+       state=latest
+       update_cache=yes
+  with_items:
+    - haproxy
+  become: yes
+  tags:
+    - init
+
+- name: Install haproxy config template
+  template: src=haproxy.cfg.j2
+            dest=/etc/haproxy/haproxy.cfg
+  become: yes
+
+- name: Start haproxy service.
+  systemd:
+    name: haproxy
+    enabled: true
+    state: restarted
+    daemon_reload: true
+  become: yes

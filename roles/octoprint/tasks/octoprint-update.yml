@@ -1,0 +1,9 @@
+---
+
+- name: Upgrade octoprint via pip (this takes a while)
+  pip:
+    name: "{{ octoprint_url }}"
+    virtualenv: "{{ octoprint_install_path }}/venv"
+    virtualenv_command: virtualenv
+    state: present
+  become: yes

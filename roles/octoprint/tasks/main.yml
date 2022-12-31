@@ -1,3 +1,10 @@
 ---
 
 - import_tasks: octoprint.yml
+  when: octoprint_update == False
+ 
+- import_tasks: octoprint-update.yml
+  when: octoprint_update == True
+
+- import_tasks: haproxy.yml
+  when: octoprint_haproxy == False

@@ -1,3 +1,4 @@
+
 network_interface: eth0
 ipv4_static: True
 ipv4_address: "{{ hostvars[inventory_hostname]['ansible_' + network_interface]['ipv4']['address'] }}"
@@ -11,6 +12,7 @@ my_timezone: "Europe/Berlin"
 
 
 # OctoPrint config
+octoprint_update: True
 octoprint_git_repo: "https://github.com/OctoPrint/OctoPrint.git"
 octoprint_url: "https://get.octoprint.org/latest"
 octoprint_install_path: "/opt/octoprint"
