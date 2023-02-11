@@ -32,7 +32,7 @@
   pip:
     name: "{{ octoprint_url }}"
     virtualenv: "{{ octoprint_install_path }}/venv"
-    virtualenv_command: virtualenv
+    virtualenv_command: python3 -m venv
     state: present
   become: yes
 

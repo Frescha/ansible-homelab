@@ -1,0 +1,44 @@
+---
+
+
+- name: Install WireGuard
+  apt:
+    name: wireguard
+    update_cache: yes
+
+- name: Generate private and public keys
+  command: wg genkey | tee privatekey | wg pubkey > publickey
+  register: wireguard_keys
+  args:
+    chdir: /etc/wireguard
+
+- name: Create WireGuard config file
+  template:
+    src: wireguard.conf.j2
+    dest: /etc/wireguard/wg0.conf
+  notify:
+    - restart wireguard
+
+- name: Enable and start WireGuard
+  service:
+    name: wireguard
+    state: started
+    enabled: yes
+  notify:
+    - reload firewall
+
+- name: Reload firewall
+  iptables:
+    table: nat
+    chain: POSTROUTING
+    rule: "-A POSTROUTING -o eth0 -j MASQUERADE"
+    state: present
+  tags:
+    - firewall
+
+- name: Restart WireGuard
+  service:
+    name: wireguard
+    state: restarted
+  tags:
+    - wireguard

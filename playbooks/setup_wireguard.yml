@@ -1,0 +1,7 @@
+# playbooks/setup_wireguard.yml
+---
+- name: Setup WireGuard on Raspberry Pi
+  hosts: raspberrypi
+  become: yes
+  roles:
+    - wireguard

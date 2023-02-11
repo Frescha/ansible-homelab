@@ -1,0 +1,8 @@
+---
+
+- name: Ensure latest version of WireGuard is installed
+  apt:
+    name: wireguard
+    state: latest
+  tags:
+    - wireguard

@@ -7,4 +7,4 @@
   when: octoprint_update == True
 
 - import_tasks: haproxy.yml
-  when: octoprint_haproxy == False
+  when: octoprint_update == False
