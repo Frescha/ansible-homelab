@@ -1,0 +1,7 @@
+---
+- name: Install CUPS Print Server with Web Interface and HP Printer Drivers
+  hosts: printing
+  become: yes
+
+  roles:
+    - printing

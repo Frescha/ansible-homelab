@@ -1,0 +1,34 @@
+---
+- name: Install CUPS package
+  package:
+    name: cups
+    state: present
+
+- name: Start and enable CUPS service
+  service:
+    name: cups
+    state: started
+    enabled: yes
+
+# - name: Install CUPS web interface
+#   package:
+#     name: cups-web
+#     state: present
+
+- name: Copy cupsd.conf file
+  copy:
+    src: cupsd.conf
+    dest: /etc/cups/
+    mode: 0644
+
+- name: Install HP printer drivers
+  package:
+    name:
+      - hplip
+      - printer-driver-gutenprint 
+    state: present
+
+- name: Restart CUPS service
+  service:
+    name: cups
+    state: restarted

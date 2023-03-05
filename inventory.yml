@@ -4,10 +4,6 @@ all:
       ansible_host: octopi.local
       ip: 192.168.14.19
       ansible_user: pirate
-    octopi.local:
-      ansible_host: octopi.local
-      ip: 192.168.14.19
-      ansible_user: pirate
     devops01.local:
       ansible_host: devops01.local
       ip: 127.0.0.1
