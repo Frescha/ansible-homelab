@@ -1,0 +1,6 @@
+- name: Update RPI operating system
+  hosts: rpis
+  become: yes
+
+  roles:
+    - roles/maintenance

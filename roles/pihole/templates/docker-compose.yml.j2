@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  pihole:
+    image: ghcr.io/pi-hole/pihole:latest
+    environment:
+      - TZ=America/New_York
+      - WEBPASSWORD=your_secure_password
+    ports:
+      - "80:80/tcp"
+      - "443:443/tcp"
+    volumes:
+      - "./pihole.conf:/etc/pihole/pihole.conf"
+      - "./dnsmasq.d:/etc/dnsmasq.d"
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1

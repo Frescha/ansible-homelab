@@ -1,0 +1,6 @@
+- name: Install deCONZ container
+  hosts: deconz
+  become: yes
+  
+  roles:
+    - roles/deconz

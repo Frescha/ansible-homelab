@@ -1,0 +1,6 @@
+- name: Install Pi-hole Docker container
+  hosts: pihole
+  become: yes
+
+  roles:
+    - roles/pihole

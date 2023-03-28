@@ -1,0 +1,21 @@
+- name: Install Docker and Docker Compose
+  apt:
+    name:
+      - docker.io
+      - docker-compose
+    state: present
+
+- name: Create /opt/deconz directory
+  become: yes
+  file:
+    path: /opt/deconz
+    state: directory
+    mode: 0755
+
+- name: Copy docker-compose.yml template
+  template:
+    src: docker-compose.yml.j2
+    dest: /opt/deconz/docker-compose.yml
+
+- name: Start deconz container
+  command: docker-compose -f /opt/deconz/docker-compose.yml up -d
