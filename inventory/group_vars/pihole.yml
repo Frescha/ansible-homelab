@@ -1,0 +1,6 @@
+# defaults file for network-config
+network_interface: eth0
+network_address: 192.168.14.2
+network_netmask: 255.255.255.0
+network_gateway: 192.168.14.1
+network_dns: 1.1.1.1

@@ -1,0 +1,7 @@
+---
+- name: Installing rsync server
+  hosts: rsync
+  become: yes
+
+  roles:
+    - roles/rsync

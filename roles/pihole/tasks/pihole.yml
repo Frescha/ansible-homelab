@@ -1,0 +1,47 @@
+---
+
+- name: Remove Docker packages
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - docker-ce-rootless-extras
+      - docker-compose-plugin
+    state: absent
+
+- name: Install Docker and Docker Compose
+  apt:
+    name:
+      - docker.io
+      - docker-compose
+    state: present
+
+- name: Restart Docker service
+  systemd:
+    name: docker.service
+    state: restarted
+
+- name: Create /opt/pihole directory
+  become: yes
+  file:
+    path: /opt/pihole
+    state: directory
+    mode: 0755
+
+- name: Copy docker-compose.yml template
+  template:
+    src: docker-compose.yml.j2
+    dest: /opt/pihole/docker-compose.yml
+
+- name: Start Pi-hole container
+  become: yes
+  command: docker-compose -f /opt/pihole/docker-compose.yml up -d
+
+- name: Copy Pi-hole configuration template
+  template:
+    src: templates/pihole.conf.j2
+    dest: /opt/pihole/pihole.conf/pihole.conf
+    mode: 0644
+  notify: Restart Pi-hole
+
+

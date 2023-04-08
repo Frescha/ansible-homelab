@@ -9,6 +9,8 @@ dns_servers:
 my_domain: local
 my_timezone: "Europe/Berlin"
  
+# defaults file for rsync-server
+rsync_user: rsync
 
 
 # OctoPrint config

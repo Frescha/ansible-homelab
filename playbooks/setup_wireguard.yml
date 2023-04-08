@@ -3,5 +3,6 @@
 - name: Setup WireGuard on Raspberry Pi
   hosts: raspberrypi
   become: yes
+
   roles:
-    - wireguard
+    - roles/wireguard

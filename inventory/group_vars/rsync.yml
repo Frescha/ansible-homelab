@@ -1,0 +1,2 @@
+# defaults file for rsync-server
+rsync_user: rsync

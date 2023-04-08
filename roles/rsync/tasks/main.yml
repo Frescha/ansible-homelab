@@ -1,0 +1,26 @@
+---
+# tasks file for rsync-server
+
+- name: Install rsync
+  apt:
+    name: rsync
+    state: latest
+
+- name: Create rsync user
+  user:
+    name: "{{ rsync_user }}"
+    shell: /bin/false
+    system: yes
+
+- name: Create rsync configuration file
+  template:
+    src: rsyncd.conf.j2
+    dest: /etc/rsyncd.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Restart rsync service
+  service:
+    name: rsync
+    state: restarted

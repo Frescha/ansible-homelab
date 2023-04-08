@@ -1,27 +1,24 @@
-- name: Install Docker and Docker Compose
-  apt:
-    name:
-      - docker.io
-      - docker-compose
-    state: present
+---
 
-# - name: Pull pihole Docker image
-#   docker_image:
-#     name: ghcr.io/pi-hole/pihole
-#     tag: latest
-#     pull: yes
+- name: Install network tools
+  become: true
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: true
+  loop:
+    - ifupdown
+    - net-tools
+  tags: network
 
-- name: Create /opt/pihole directory
-  become: yes
-  file:
-    path: /opt/pihole
-    state: directory
-    mode: 0755
+# - import_tasks: hostname.yml
+#   tags:
+#     - network
 
-- name: Copy docker-compose.yml template
-  template:
-    src: docker-compose.yml.j2
-    dest: /opt/pihole/docker-compose.yml
+# - import_tasks: interfaces.yml
+#   tags:
+#     - network
 
-- name: Start Pi-hole container
-  command: docker-compose -f /opt/pihole/docker-compose.yml up -d
+- import_tasks: pihole.yml
+  tags:
+    - pihole

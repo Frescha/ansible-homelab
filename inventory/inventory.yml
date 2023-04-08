@@ -3,21 +3,43 @@ all:
     octopi.local:
       ansible_host: octopi.local
       ip: 192.168.14.19
-    octopi.local:
-      ansible_host: octopi.local
-      ip: 192.168.14.19
+      ansible_user: pirate
+    app01.local:
+      ansible_host: app01.local
+      ip: 192.168.14.2
+      ansible_user: pirate
+      ansible_fqdn: app01.local
+    app02.local:
+      ansible_host: app02.local
+      ip: 192.168.14.11
+      ansible_user: pirate
+      ansible_fqdn: app02.local
+    dual.local:
+      ansible_host: dual.local
+      ip: 192.168.14.67
+      ansible_user: pirate
     devops01.local:
       ansible_host: devops01.local
       ip: 127.0.0.1
       ansible_connection: local
   children:
+    rpis:
+      hosts:
+        app01.local:
+        devops01.local:
+        octopi.local:
     printing:
       hosts:
         octopi.local:
     dual:
       hosts:
         octopi.local:
-  vars:
-    ansible_user: pirate
-    ansible_connection: ssh
-    ansible_python_interpreter: /usr/bin/python3
+    pihole:
+      hosts:
+        app02.local:
+    deconz:
+      hosts:
+        dual.local:
+    rsync:
+      hosts:
+        dual.local:

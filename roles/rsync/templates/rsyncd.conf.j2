@@ -1,0 +1,13 @@
+uid = {{ rsync_user }}
+gid = {{ rsync_user }}
+use chroot = yes
+pid file = /var/run/rsyncd.pid
+log file = /var/log/rsyncd.log
+
+[rsync]
+    path = /home/{{ rsync_user }}/rsync
+    comment = Rsync directory
+    read only = no
+    list = yes
+    uid = {{ rsync_user }}
+    gid = {{ rsync_user }}

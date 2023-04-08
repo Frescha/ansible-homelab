@@ -1,0 +1,19 @@
+---
+# tasks file for network-config
+
+- name: Configure eth0 interface
+  become: yes
+  template:
+    src: ifcfg-eth0.j2
+    dest: /etc/network/interfaces.d/eth0.cfg
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - restart networking
+
+# - name: Configure DNS
+#   become: yes
+#   lineinfile:
+#     path: /etc/resolv.conf
+#     line: "nameserver {{ network_dns }}"
