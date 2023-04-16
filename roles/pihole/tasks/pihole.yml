@@ -37,11 +37,20 @@
   become: yes
   command: docker-compose -f /opt/pihole/docker-compose.yml up -d
 
-- name: Copy Pi-hole configuration template
-  template:
-    src: templates/pihole.conf.j2
-    dest: /opt/pihole/pihole.conf/pihole.conf
+- name: Copy custom.list file for Pi-hole
+  copy:
+    src: files/custom.list
+    dest: /opt/pihole/etc-pihole/custom.list
     mode: 0644
   notify: Restart Pi-hole
 
-
+- name: Add lines to setupVars.conf if not exists
+  vars:
+    source_file: files/setupVars.conf.source
+    dest_file: /opt/pihole/etc-pihole/setupVars.conf
+  blockinfile:
+    path: "{{ dest_file }}"
+    block: "{{ lookup('file', source_file) }}"
+    insertbefore: EOF
+    backup: yes
+  notify: Restart Pi-hole

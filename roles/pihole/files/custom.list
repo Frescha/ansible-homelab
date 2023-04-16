@@ -1,0 +1,8 @@
+# Local DNS records for my network
+192.168.12.10 apollo.local
+192.168.12.11 mercury.local
+
+192.168.14.2 app01.local
+192.168.14.3 app02.local
+192.168.14.3 devops01.local
+192.168.14.14 assistant.local

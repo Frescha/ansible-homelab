@@ -4,3 +4,8 @@
   service:
     name: networking
     state: restarted
+
+- name: Restart Pi-hole
+  docker_container:
+    name: pihole_pihole_1
+    state: restarted
