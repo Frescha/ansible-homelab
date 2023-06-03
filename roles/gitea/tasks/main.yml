@@ -8,7 +8,7 @@
     state: started
     restart_policy: always
     ports:
-      - "3000:3000"
+      - "80:3000"
       - "22:2222"
     volumes:
       - "/opt/gitea:/data"
