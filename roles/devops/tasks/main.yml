@@ -1,0 +1,25 @@
+---
+- name: Update package cache
+  apt:
+    update_cache: yes
+  become: true
+  when: ansible_os_family == 'Debian'
+
+- name: Upgrade packages
+  apt:
+    upgrade: dist
+    autoremove: yes
+    autoremove_dependencies: yes
+  become: true
+  when: ansible_os_family == 'Debian'
+
+- name: Install predefined programs
+  apt:
+    name:
+      - git
+      - zsh
+      - python3.10
+      - python3-pip
+    state: present
+  become: true
+  when: ansible_os_family == 'Debian'

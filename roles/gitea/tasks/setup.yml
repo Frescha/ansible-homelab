@@ -1,0 +1,19 @@
+- name: Create Gitea configuration file
+  template:
+    src: app.ini.j2
+    dest: /opt/gitea/app.ini
+    mode: 0644
+
+- name: Ensure SSH directory exists
+  file:
+    path: /opt/gitea/.ssh
+    state: directory
+    mode: 0700
+
+- name: Copy authorized_keys file
+  copy:
+    src: authorized_keys
+    dest: /opt/gitea/.ssh/authorized_keys
+    mode: 0600
+    owner: gitea
+    group: gitea
